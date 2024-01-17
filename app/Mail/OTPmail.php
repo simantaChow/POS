@@ -40,7 +40,7 @@ class OTPmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'views.email.OPTMail',
+            view: 'email.OTPMail'
         );
     }
 

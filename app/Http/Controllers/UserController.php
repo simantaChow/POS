@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\JWTToken;
 use App\Mail\OTPmail;
 use Exception;
+use http\Env\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -82,6 +83,21 @@ class UserController extends Controller
 }
 
 
+function VerifyOTP(Request $request)
+{
+    $email = $request->input('email');
+    $otp = $request->input('otp');
+    $count = User::where('email', '=', $email)->where('otp', '=', $otp)->count();
+    if ($count == 1) {
+        //Database OTP Update
+        //
+    } else {
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'un'
+        ]);
+    }
+}
 
 
 
