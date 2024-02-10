@@ -15,6 +15,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
+//web
+Route::view('/', 'home');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+
+//api
 Route::post('/user-registration', [UserController::class, 'UserRegistration'])->name('UserRegistration');
 Route::post('/user-login', [UserController::class, 'UserLogin'])->name('UserLogin');
 Route::post('/send-otp', [UserController::class, 'SendOTPCode'])->name('SendOtp');

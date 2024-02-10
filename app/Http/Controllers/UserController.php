@@ -10,9 +10,16 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    function login(): View
+    {
+        return view('pages.auth.login-page');
+    }
+
+
     function UserRegistration(Request $request): JsonResponse
     {
         try {
