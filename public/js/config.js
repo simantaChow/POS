@@ -1,9 +1,8 @@
-function showLoader(){
-    document.getElementById('loader').remove('d-none')
+function showLoader() {
+    document.getElementById('loader').classList.remove('d-none')
 }
-
-function hideLoader(){
-    document.getElementById('loader').add('d-none')
+function hideLoader() {
+    document.getElementById('loader').classList.add('d-none')
 }
 
 function successToast(msg) {

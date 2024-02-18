@@ -1,5 +1,4 @@
 <!doctype html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/loader.css')}}">
     <link rel="stylesheet" href="{{asset('css/toastify.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <script src="{{asset('js/axios.min.js')}}"></script>
     <script src="{{asset('js/config.js')}}"></script>
     <script src="{{asset('js/toastify-js.js')}}"></script>
@@ -14,9 +14,11 @@
 </head>
 <body>
 
-<div class="loader d-none"></div>
+<div id="loader" class="loader d-none"></div>
 <div>
     @yield('content')
 </div>
+
+<script src="{{asset('js/bootstrap.bundle.js')}}"></script>
 </body>
 </html>

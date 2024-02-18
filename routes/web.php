@@ -22,6 +22,7 @@ Route::get('/signup', [UserController::class, 'signup'])->name('signup');
 Route::get('/resetpass', [UserController::class, 'resetPassPage'])->name('resetpass');
 Route::get('/sendotp', [UserController::class, 'sendOtp'])->name('sendotp');
 Route::get('/verifyotp', [UserController::class, 'verifyOtppage'])->name('verifyotp');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
 //api
 Route::post('/user-registration', [UserController::class, 'UserRegistration'])->name('UserRegistration');
