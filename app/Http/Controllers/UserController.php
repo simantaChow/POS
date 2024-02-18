@@ -73,13 +73,13 @@ class UserController extends Controller
         $otp = rand(1000, 9999);
         $count = User::where('email', '=', $email)->count();
         if ($count == 1) {
-            //mail to user
+            //email to user
             Mail::to($email)->send(new OTPmail($otp));
             //insert OTP to database
             User::where('email', '=', $email)->update(['otp' => $otp]);
             return response()->json([
                 'status' => 'success',
-                'message' => '4 Digit OTP Send to your mail',
+                'message' => '4 Digit OTP Send to your email',
             ], 200);
         } else return response()->json([
             'status' => 'fail',
@@ -127,7 +127,7 @@ class UserController extends Controller
         } catch (Exception $exception) {
             return response()->json([
                 'status' => 'fail',
-                'message' => 'Something went worng',
+                'message' => 'Something went wrong',
             ], 200);
         }
     }
