@@ -14,10 +14,12 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    function login(): View
-    {
-        return view('pages.auth.login-page');
-    }
+    function login(): View { return view(view:'pages.auth.login');}
+    function signup(): View { return view(view:'pages.auth.registration');}
+    function resetPassPage(): View { return view( view: 'pages.auth.resetPass');}
+    function sendOtp(): View { return view( view: 'pages.auth.sendotp');}
+    function verifyOtppage(): View { return view( view: 'pages.auth.verifyotp');}
+
 
 
     function UserRegistration(Request $request): JsonResponse
