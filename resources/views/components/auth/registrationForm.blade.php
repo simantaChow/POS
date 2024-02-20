@@ -13,11 +13,11 @@
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>First Name</label>
-                                <input id="firstName" placeholder="First Name" class="form-control" type="text"/>
+                                <input id="firstname" placeholder="First Name" class="form-control" type="text"/>
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>Last Name</label>
-                                <input id="lastName" placeholder="Last Name" class="form-control" type="text"/>
+                                <input id="lastname" placeholder="Last Name" class="form-control" type="text"/>
                             </div>
                             <div class="col-md-4 p-2">
                                 <label>Mobile Number</label>
@@ -46,16 +46,16 @@
 
     async function onRegistration() {
         let email = document.getElementById('email').value;
-        let firstName = document.getElementById('firstName').value;
-        let lastName = document.getElementById('lastName').value;
+        let firstname = document.getElementById('firstname').value;
+        let lastname = document.getElementById('lastname').value;
         let mobile = document.getElementById('mobile').value;
         let password = document.getElementById('password').value;
 
         if (email.length === 0) {
             errorToast("Email is required");
-        } else if (firstName.length === 0) {
+        } else if (firstname.length === 0) {
             errorToast("First Name is required");
-        } else if (lastName.length === 0) {
+        } else if (lastname.length === 0) {
             errorToast("Last Name is required");
         } else if (mobile.length === 0) {
             errorToast("Mobile is required");
@@ -64,13 +64,16 @@
         } else {
             showLoader();
             let res = await axios.post("/user-registration", {
-                email: email, firstName: firstName, lastName: lastName, mobile: mobile, password: password
+                email: email, firstname: firstname, lastname: lastname, mobile: mobile, password: password
             });
             hideLoader();
-            if (res.status === 200 && res.data(['status'] === 'success')) {
-                window.location.href = "/dashboard";
+            if (res.status === 200 && res.data['status'] === 'success') {
+                successToast(res.data["message"]);
+                setTimeout(function () {
+                    window.location.href = "/login";
+                }, 1000);
             } else {
-                errorToast(res.data(['message']))
+                errorToast(res.data['message']);
             }
         }
 

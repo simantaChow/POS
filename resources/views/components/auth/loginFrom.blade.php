@@ -13,9 +13,9 @@
                     <hr/>
                     <div class="float-end mt-3">
                         <span>
-                            <a class="text-center ms-3 h6" href="{{url('/userRegistration')}}">Sign Up </a>
+                            <a class="text-center ms-3 h6" href="{{url('/signup')}}">Sign Up </a>
                             <span class="ms-1">|</span>
-                            <a class="text-center ms-3 h6" href="{{url('/sendOtp')}}">Forget Password</a>
+                            <a class="text-center ms-3 h6" href="{{url('/sendotp')}}">Forget Password</a>
                         </span>
                     </div>
                 </div>
@@ -28,23 +28,20 @@
 <script>
 
     async function SubmitLogin() {
-        let email=document.getElementById('email').value;
-        let password=document.getElementById('password').value;
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
 
-        if(email.length===0){
+        if (email.length === 0) {
             errorToast("Email is required");
-        }
-        else if(password.length===0){
+        } else if (password.length === 0) {
             errorToast("Password is required");
-        }
-        else{
+        } else {
             showLoader();
-            let res=await axios.post("/user-login",{email:email, password:password});
+            let res = await axios.post("/user-login", {email: email, password: password});
             hideLoader()
-            if(res.status===200 && res.data['status']==='success'){
-                window.location.href="/dashboard";
-            }
-            else{
+            if (res.status === 200 && res.data['status'] === 'success') {
+                window.location.href = "/dashboard";
+            } else {
                 errorToast(res.data['message']);
             }
         }
