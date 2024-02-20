@@ -16,26 +16,29 @@
 </div>
 
 
-<script !src="">
+<script>
     async function VerifyOtp() {
         let otp = document.getElementById('otp').value;
         if (otp.length !== 4) {
             errorToast('Invalid OTP')
         } else {
             showLoader();
-            let res = await axios.post('/verify-otp', {otp: otp, email: sessionStorage.getItem('email')});
+            let res = await axios.post('/verify-otp', {
+                otp: otp,
+                email: sessionStorage.getItem('email')
+            })
             hideLoader();
 
-            if (res.status === 200 && res.data['status'] == 'success') {
-                successToast(res.data['message']);
+            if (res.status === 200 && res.data['status'] === 'success') {
+                successToast(res.data['message'])
                 sessionStorage.clear();
                 setTimeout(() => {
-                    window.location.herf = '/login'
-                }, 1000)
+                    window.location.href = '/resetpass'
+                }, 1000);
             } else {
                 errorToast(res.data['message'])
             }
         }
     }
-
 </script>
+
