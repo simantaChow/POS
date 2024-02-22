@@ -23,10 +23,12 @@ Route::get('/resetpass', [UserController::class, 'resetPassPage'])->name('resetp
 Route::get('/sendotp', [UserController::class, 'sendOtp'])->name('sendotp');
 Route::get('/verifyotp', [UserController::class, 'verifyOtppage'])->name('verifyotp');
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
 
 //api
 Route::post('/user-registration', [UserController::class, 'UserRegistration'])->name('UserRegistration');
 Route::post('/user-login', [UserController::class, 'UserLogin'])->name('UserLogin');
 Route::post('/send-otp', [UserController::class, 'SendOTPCode'])->name('SendOtp');
 Route::post('/verify-otp', [UserController::class, 'VerifyOTP'])->name('VerifyOTP');
-Route::post('/reset-pass', [UserController::class, 'ResetPass'])->name('ResetPass')->middleware([TokenVerifycationMiddleware::class]);
+Route::post('/reset-pass', [UserController::class, 'ResetPassword'])->name('ResetPassword')->middleware([TokenVerifycationMiddleware::class]);
