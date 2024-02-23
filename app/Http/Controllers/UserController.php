@@ -44,6 +44,11 @@ class UserController extends Controller
         return view(view: 'layouts.dashboard');
     }
 
+    function profilePage(): View
+    {
+        return view(view: 'pages.auth.profile');
+    }
+
 
     function UserRegistration(Request $request): JsonResponse
     {
@@ -74,10 +79,10 @@ class UserController extends Controller
 
     function UserLogin(Request $request): JsonResponse
     {
-        $count = User::where('email', '=', $request->input('email'))->where('password', '=', $request->input('password'))->count();
-        if ($count == 1) {
+        $count = User::where('email', '=', $request->input('email'))->where('password', '=', $request->input('password'))->select('id')->first();
+        if ($count !== null) {
             //user login->JWT Token Issue
-            $token = JWTToken::CreateToken($request->input('email'));
+            $token = JWTToken::CreateToken($request->input('email'), $count->id);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User Login Success',
@@ -159,6 +164,42 @@ class UserController extends Controller
         return redirect('/login')->cookie('token', '', -1);
     }
 
+    function userprofile(Request $request)
+    {
+        $email = $request->header('email');
+        $user = User::where('email', '=', $email)->first();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Request Successful',
+            'data' => $user
+        ], 200);
+    }
+
+    function UpdateProfile(Request $request)
+    {
+        try {
+            $email = $request->header('email');
+            $firstname = $request->input('firstname');
+            $lastname = $request->input('lastname');
+            $mobile = $request->input('mobile');
+            $password = $request->input('password');
+            User::where('email', '=', $email)->update([
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'mobile' => $mobile,
+                'password' => $password
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Request Successful'
+            ], 200);
+        } catch (Exception $exception) {
+            return response()->json([
+                'status' => 'Fail',
+                'message' => 'Something went Wrong'
+            ], 200);
+        }
+    }
 }
 
 
