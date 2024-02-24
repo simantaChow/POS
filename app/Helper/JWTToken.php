@@ -16,12 +16,12 @@ class JWTToken
             'iat' => time(),
             'exp' => time() + 60 * 60,
             'userEmail' => $userEmail,
-            'userID' => '$userID'
+            'userID' => $userID
         ];
         return JWT::encode($payload, $key, 'HS256');
     }
 
-    public static function CreateTokenForSetPassword($userEmail): string|object
+    public static function CreateTokenForSetPassword($userEmail, $userID): string|object
     {
         $key = env('JWT_KEY');
         $payload = [
@@ -29,7 +29,7 @@ class JWTToken
             'iat' => time(),
             'exp' => time() + 60 * 5,
             'userEmail' => $userEmail,
-            'userID' => '0'
+            'userID' => $userID
         ];
         return JWT::encode($payload, $key, 'HS256');
     }
