@@ -1,4 +1,4 @@
-@extends('layout.sidenav-layout')
+@extends('layouts.dashboard')
 @section('content')
     @include('components.category.category-list')
     @include('components.category.category-delete')
