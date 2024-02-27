@@ -51,15 +51,30 @@
                 <td>${index + 1}</td>
                 <td>${item['name']}</td>
                 <td>
-                <button class="btn btn-outline-primary">Edit</button>
-                <button class="btn btn-outline-danger">Delete</button>
+                <button data-id="${item['id']}" data-name="${item['name']}" class="edit btn btn-outline-primary">Edit</button>
+                <button data-id="${item['id']}" class="delete btn btn-outline-danger">Delete</button>
                 </td>
                 </tr>`
             tableList.append(row);
         });
 
+        $(".edit").on('click', async function () {
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+            await FillUpdateForm(id, name);
+            $('#update-modal').modal('show');
+
+        });
+
+        $(".delete").on('click', async function () {
+            let id = $(this).data('id');
+            $('#delete-modal').modal('show');
+            $('#deleteID').val(id);
+
+        })
+
         tableData.DataTable({
-            order: [[0, 'asc']],
+            order: [[0, 'dsc']],
             lengthMenu: [2, 5, 7, 9]
         });
     }

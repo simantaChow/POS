@@ -30,4 +30,27 @@
 
 <script !src="">
 
+    async function Save() {
+        let categoryName = document.getElementById('categoryName').value;
+        if (categoryName.length === 0) {
+            errorToast('Category Required!')
+        } else {
+
+            document.getElementById('modal-close').click();
+            showLoader();
+            let res = await axios.post("/categorycreate", {name: categoryName})
+            hideLoader()
+
+            if (res.status === 201) {
+                successToast('Request Completed');
+                document.getElementById("save-form").reset();
+
+                await getList();
+            } else {
+                errorToast("Request Fail");
+            }
+        }
+
+    }
+
 </script>
