@@ -32,8 +32,8 @@
 <script !src="">
 
     async function FillUpdateForm(id, name) {
-        this.id = $('#updateID').val();
-        this.name = $('#categoryNameUpdate').val();
+        this.id = $('#updateID').val(id);
+        this.name = $('#categoryNameUpdate').val(name);
     }
 
     async function Update() {
@@ -49,7 +49,7 @@
             let res = await axios.post('/categoryupdate', {id: id, name: name});
             hideLoader();
 
-            if (res.status === 200 & res.data===1) {
+            if (res.status === 200 & res.data === 1) {
                 $('#update-form').trigger("reset");
                 successToast('Request Success');
                 await getList();
