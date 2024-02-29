@@ -37,14 +37,12 @@
 
 
 <script !src="">
-    async function FillUpUpdateForm(id) {
-        document.getElementById('updateID').value = id;
-        showLoader();
-        let res = await axios.post("/customer-by-id", {id: id})
-        hideLoader();
-        document.getElementById('customerNameUpdate').value = res.data['name'];
-        document.getElementById('customerEmailUpdate').value = res.data['email'];
-        document.getElementById('customerMobileUpdate').value = res.data['mobile'];
+    async function FillUpUpdateForm(id, name, email, mobile) {
+        this.id = $('#updateID').val(id);
+        this.name = $('#customerNameUpdate').val(name);
+        this.email = $('#customerEmailUpdate').val(email);
+        this.mobile = $('#customerMobileUpdate').val(mobile);
+
     }
 
 
@@ -68,7 +66,7 @@
 
             showLoader();
 
-            let res = await axios.post("/update-customer", {
+            let res = await axios.post("/customerupdate", {
                 name: customerName,
                 email: customerEmail,
                 mobile: customerMobile,

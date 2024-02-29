@@ -38,7 +38,7 @@ Route::post('/send-otp', [UserController::class, 'SendOTPCode'])->name('SendOtp'
 Route::post('/verify-otp', [UserController::class, 'VerifyOTP'])->name('VerifyOTP');
 Route::post('/reset-pass', [UserController::class, 'ResetPassword'])->name('ResetPassword')->middleware([TokenVerifycationMiddleware::class]);
 Route::get('/userprofile', [UserController::class, 'userprofile'])->name('userprofile')->middleware([TokenVerifycationMiddleware::class]);
-Route::post('/customer', [CustomerController::class, 'CustomerPage'])->name('customer')->middleware([TokenVerifycationMiddleware::class]);
+Route::get('/customer', [CustomerController::class, 'CustomerPage'])->name('customer')->middleware([TokenVerifycationMiddleware::class]);
 
 
 //Category Related api
@@ -50,5 +50,6 @@ Route::post('/categorydelete', [CategoryController::class, 'CategoryDelete'])->n
 //Customers Related api
 Route::post('/createcustomer', [CustomerController::class, 'CustomerCreate'])->name('createcustomer')->middleware([TokenVerifycationMiddleware::class]);
 Route::get('/customerlist', [CustomerController::class, 'CustomerList'])->name('customerlist')->middleware([TokenVerifycationMiddleware::class]);
+Route::get('/customerbyid', [CustomerController::class, 'CustomerByID'])->name('customerbyid')->middleware([TokenVerifycationMiddleware::class]);
 Route::post('/customerupdate', [CustomerController::class, 'CustomerUpdate'])->name('customerupdate')->middleware([TokenVerifycationMiddleware::class]);
 Route::post('/customerdelete', [CustomerController::class, 'CustomerDelete'])->name('customerdelete')->middleware([TokenVerifycationMiddleware::class]);
