@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\TokenVerifycationMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -53,3 +54,11 @@ Route::get('/customerlist', [CustomerController::class, 'CustomerList'])->name('
 Route::get('/customerbyid', [CustomerController::class, 'CustomerByID'])->name('customerbyid')->middleware([TokenVerifycationMiddleware::class]);
 Route::post('/customerupdate', [CustomerController::class, 'CustomerUpdate'])->name('customerupdate')->middleware([TokenVerifycationMiddleware::class]);
 Route::post('/customerdelete', [CustomerController::class, 'CustomerDelete'])->name('customerdelete')->middleware([TokenVerifycationMiddleware::class]);
+
+
+//product Related api
+Route::post('/createproduct', [ProductController::class, 'CreateProduct'])->name('createproduct')->middleware([TokenVerifycationMiddleware::class]);
+Route::post('/deleteproduct', [ProductController::class, 'DeleteProduct'])->name('deleteproduct')->middleware([TokenVerifycationMiddleware::class]);
+Route::post('/productbyid', [ProductController::class, 'ProductByID'])->name('productbyid')->middleware([TokenVerifycationMiddleware::class]);
+Route::post('/productlist', [ProductController::class, 'ProductList'])->name('productlist')->middleware([TokenVerifycationMiddleware::class]);
+Route::post('/updateproduct', [ProductController::class, 'UpdateProduct'])->name('updateproduct')->middleware([TokenVerifycationMiddleware::class]);
