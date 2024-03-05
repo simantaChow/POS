@@ -62,7 +62,7 @@
         $(".editBtn").on('click', async function () {
             let id = $(this).data('id');
             let filePath = $(this).data('path');
-            await FillUpdateForm(id, filePath);
+            await FillUpUpdateForm(id, filePath);
             $("#update-modal").modal("show");
 
         });
@@ -72,8 +72,8 @@
             let filePath = $(this).data('path');
 
             $("#delete-modal").modal("show");
-            $("#deleteID").val("id");
-            $("#deleteFilePath").modal("path");
+            $("#deleteID").val(id);
+            $("#deleteFilePath").val(filePath);
 
         });
 
